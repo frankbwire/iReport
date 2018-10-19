@@ -91,5 +91,15 @@ array_push($errors, "Wrong email/password combination");
 }
 }
 }
+//user_comment_section
+$usern="";
+if(isset($_POST["comment_btn"])){
+$usern=mysqli_real_escape_string($db , $_POST["username"] );
+$comm=mysqli_real_escape_string($db , $_POST["comment"] );
+$sql="Insert into opinions(username,opinion) values('$usern','$comm')";
+    if(mysqli_query($db, $sql)){} else{
+    echo "ERROR: Not able to execute $sql. " . mysqli_error($db);
+}
+}
 ?>
 ?>

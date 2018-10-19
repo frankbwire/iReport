@@ -4,5 +4,5 @@ $db = mysqli_connect('localhost', 'root', '', 'ireport');
 if (!$db) {
     die("Connection failed: " . $db-> mysqli_connect_error());
 }
-echo "<b>Connected</b> <br>";
 ?>
+<!-- Add user session monitoring and termination -->
