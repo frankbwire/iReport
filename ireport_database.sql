@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2018 at 09:10 AM
+-- Generation Time: Oct 20, 2018 at 01:07 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `ireport`
 --
-CREATE DATABASE IF NOT EXISTS `ireport` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `ireport`;
 
 -- --------------------------------------------------------
 
@@ -30,8 +28,7 @@ USE `ireport`;
 -- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
+CREATE TABLE `admin` (
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -49,11 +46,9 @@ INSERT INTO `admin` (`email`, `password`) VALUES
 -- Table structure for table `opinions`
 --
 
-DROP TABLE IF EXISTS `opinions`;
-CREATE TABLE IF NOT EXISTS `opinions` (
+CREATE TABLE `opinions` (
   `Username` varchar(100) NOT NULL,
-  `Opinions` varchar(200) NOT NULL,
-  PRIMARY KEY (`Username`)
+  `Opinions` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -62,16 +57,14 @@ CREATE TABLE IF NOT EXISTS `opinions` (
 -- Table structure for table `reports`
 --
 
-DROP TABLE IF EXISTS `reports`;
-CREATE TABLE IF NOT EXISTS `reports` (
+CREATE TABLE `reports` (
   `Location` varchar(100) NOT NULL,
   `Area` varchar(100) NOT NULL,
   `Vehicle_Type` varchar(100) NOT NULL,
   `Vehicle_color` varchar(100) NOT NULL,
   `Plate_Number` varchar(100) NOT NULL,
   `Description` text NOT NULL,
-  `Report_Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`Plate_Number`)
+  `Report_Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -87,24 +80,52 @@ INSERT INTO `reports` (`Location`, `Area`, `Vehicle_Type`, `Vehicle_color`, `Pla
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
-ALTER TABLE `users` AUTO_INCREMENT=001;
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`) VALUES
-(1, 'Frank', 'Bwire', 'bwire@ireport.com', '827ccb0eea8a706c4c34a16891f84e7b');
+(3, 'Report', 'This', 'iThis@ireport.com', '827ccb0eea8a706c4c34a16891f84e7b');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `opinions`
+--
+ALTER TABLE `opinions`
+  ADD PRIMARY KEY (`Username`);
+
+--
+-- Indexes for table `reports`
+--
+ALTER TABLE `reports`
+  ADD PRIMARY KEY (`Plate_Number`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
